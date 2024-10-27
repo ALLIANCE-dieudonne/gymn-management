@@ -1,0 +1,37 @@
+{%extends "base.html"%} 
+{% block title %} Profile {% endblock title %}
+
+
+{% block head %}
+<h1>Your enrollment details</h1>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+  
+      <div class="col-md-8"> 
+
+        {%for post in posts %}
+
+        <ul class="list-group">
+            <li class="list-group-item">Name: {{post.fullname}}</li>
+            <li class="list-group-item list-group-item-primary">Email: {{post.email}}</li>
+            <li class="list-group-item list-group-item-secondary">Phone number: {{post.phoneNumber}}</li>
+            <li class="list-group-item list-group-item-success">Gender:{{post.gender}}</li>
+            <li class="list-group-item list-group-item-danger">DOB: {{post.Dob}}</li>
+            <li class="list-group-item list-group-item-warning">Membership plan: {{post.membershipPlan}}</li>
+            <li class="list-group-item list-group-item-info">Trainers: {{post.trainers}}</li>
+            <li class="list-group-item list-group-item-light">Address: {{post.address}}</li>
+            <li class="list-group-item list-group-item-dark">Payment status: {{post.paymentStatus}}</li>
+            <li class="list-group-item list-group-item-dark">Amount paid: {{post.price}}</li>
+            <li class="list-group-item list-group-item-dark">Due date: {{post.dueDate}}</li>
+            <li class="list-group-item list-group-item-light">Join date: {{post.dueDate}}</li>
+          </ul>
+          {% endfor %}
+      </div>
+  
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+{% endblock head %}
+    

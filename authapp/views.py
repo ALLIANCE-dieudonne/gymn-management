@@ -93,7 +93,7 @@ def enroll(request):
     if not request.user.is_authenticated:
         messages.warning(request, "You need to be logged in to enroll.")
         return redirect("/login")
-    
+
     Membership = MembershipPlan.objects.all()
     trainers = Trainer.objects.all()
     context = {"Membership": Membership, "trainers": trainers}
@@ -119,10 +119,18 @@ def enroll(request):
             reference=reference,
             address=address,
         )
-        query.save()
+        query.save()    
         messages.info(request, "You have successfully enrolled.")
         return redirect("/enroll")
     return render(request, "enroll.html", context)
 
+
 def profile(request):
-    return render(request, "profile.html")
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please login first.")
+        return redirect("/login")
+    
+    user_phone = request.user
+    posts = Enroll.objects.filter(phoneNumber=user_phone)
+    context = {"posts": posts}
+    return render(request, "profile.html", context)
